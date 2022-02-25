@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandymansToolkit.Views.Torch"
+             Title="Flash Light">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightBlue">
+            <Image Source="torch" 
+                VerticalOptions="CenterAndExpand"></Image>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Button Text="{Binding ButtonText}" 
+                    TextColor="Black"
+                    FontSize="Large"
+                    BackgroundColor="#00A3FF"
+                    BorderColor="Black"
+                    BorderWidth="5"
+                    CornerRadius="5"
+                    Clicked="Handle_Clicked" 
+                    WidthRequest="300" 
+                    HeightRequest="100"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
