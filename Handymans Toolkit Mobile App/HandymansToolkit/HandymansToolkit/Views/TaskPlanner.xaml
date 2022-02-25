@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:HandymansToolkit.Models"
+             xmlns:viewmodels="clr-namespace:HandymansToolkit.ViewModels"
+             x:Class="HandymansToolkit.Views.TaskPlanner"
+             x:DataType="viewmodels:TaskPlannerViewModel"
+             x:Name="TaskPlannerPage"
+             Title="Task Planner">
+    <ContentPage.BindingContext>
+        <viewmodels:TaskPlannerViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="New Task" 
+                     Command="{Binding AddTaskCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView CachingStrategy="RecycleElement"
+              ItemSelected="ListView_ItemSelected"
+              ItemTapped="ListView_ItemTapped"
+              BackgroundColor="LightBlue"
+              ItemsSource="{Binding Task1}"
+              HasUnevenRows="true"
+              SeparatorColor="black"
+              IsPullToRefreshEnabled="true"
+              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+              RefreshCommand="{Binding RefreshCommand}">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Task1">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="Mark Completed" 
+                                  Clicked="MarkCompleted"/>
+                        <MenuItem Text="Delete" 
+                                  CommandParameter="{Binding .}"
+                                  Command="{Binding 
+                                  Source={x:Reference TaskPlannerPage},
+                                  Path=BindingContext.RemoveTaskCommand}"/>
+                    </ViewCell.ContextActions>
+                    <Grid Padding="20">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding TaskName}"
+                               VerticalOptions="Center"
+                                   TextColor="black"
+                                   FontSize="20"/>
+                                <Label Text="{Binding Description}"
+                                   FontSize="16"
+                                   VerticalOptions="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

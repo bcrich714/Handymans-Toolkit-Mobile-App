@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandymansToolkit.Views.SpiritLevel"
+             BackgroundColor="LightBlue"
+             Title="Spirit Level">
+
+    <ScrollView>
+        <StackLayout Margin="20,35,20,20">
+            <Label TextColor="Gray"
+                   FontSize="50" 
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding AngleValue}"
+                   Padding="0, 50"/>
+            <Button Text="{Binding ButtonText}" 
+                    Clicked = "ButtonStart_Clicked" 
+                    TextColor="Black"
+                    FontSize="Large"
+                    BackgroundColor="#00A3FF"
+                    BorderColor="Black"
+                    BorderWidth="5"
+                    CornerRadius="5"
+                    WidthRequest="150"
+                    HeightRequest="75"/>
+            <Label Text="Axis of Orientation:" 
+                   Padding="0, 30, 0, 10"
+                   FontSize="22"/>
+            <RadioButton Content="XY axis (Left and Right)" 
+                         IsChecked="true" 
+                         x:Name="XY"
+                         GroupName="orientation"
+                         CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+            <RadioButton Content="YZ axis (Forward and Back)" 
+                         x:Name="YZ"
+                         GroupName="orientation"
+                         CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+            <Label Text="Accuracy of Readings:" 
+                   Padding="0, 30, 0, 10"
+                   FontSize="22"/>
+            <RadioButton Content="Degrees" 
+                         IsChecked="true" 
+                         x:Name="radioDegrees"
+                         GroupName="accuracy"
+                         CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+            <RadioButton Content="Degrees, Minutes" 
+                         x:Name="radioMinutes"
+                         GroupName="accuracy"
+                         CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+            <RadioButton Content="Degrees, Minutes, Seconds" 
+                         x:Name="radioSeconds"
+                         GroupName="accuracy"
+                         CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+            <Label TextColor="Gray"
+           FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Path=OnButtonClicked}"  />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ScrollView>
+  </ContentPage>
